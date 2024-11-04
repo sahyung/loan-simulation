@@ -1,10 +1,18 @@
-const DAILY_INTEREST_RATE = 0.5 / 100; // Fixed daily interest rate of (0.5)% of loan amount
-
 document.addEventListener("DOMContentLoaded", function () {
     // Set the default date to today
     const today = new Date();
     document.getElementById("startDate").valueAsDate = today;
     generateSimulation();
+
+    // Attach event listeners to trigger generateSimulation on Enter key press
+    const inputs = document.querySelectorAll('#loanAmount, #dailyPayment, #dailyInterestRate, #startDate');
+    inputs.forEach(input => {
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                generateSimulation();
+            }
+        });
+    });
 });
 
 // This function makes the date picker show when clicking anywhere on the input
@@ -33,6 +41,7 @@ function formatDate(date) {
 function generateSimulation() {
     const loanAmount = parseCurrency(document.getElementById('loanAmount').value);
     const dailyPayment = parseCurrency(document.getElementById('dailyPayment').value);
+    const dailyInterestRate = parseFloat(document.getElementById('dailyInterestRate').value) / 100; // Convert percentage to decimal
     const startDate = new Date(document.getElementById('startDate').value);
 
     let balance = loanAmount;
@@ -41,7 +50,7 @@ function generateSimulation() {
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = ""; // Clear previous results
 
-    if (isNaN(loanAmount) || isNaN(dailyPayment) || !startDate) {
+    if (isNaN(loanAmount) || isNaN(dailyPayment) || isNaN(dailyInterestRate) || !startDate) {
         alert("Please enter valid input values.");
         return;
     }
@@ -51,7 +60,7 @@ function generateSimulation() {
     let currentDate = new Date(startDate);
     while (balance > 0) {
         const dayOfWeek = currentDate.getDay(); // 0 = Sunday, 6 = Saturday
-        const dailyInterest = (dayOfWeek >= 1 && dayOfWeek <= 5) ? loanAmount * DAILY_INTEREST_RATE : 0;
+        const dailyInterest = (dayOfWeek >= 1 && dayOfWeek <= 5) ? loanAmount * dailyInterestRate : 0;
         
         const payment = Math.min(dailyPayment, balance + dailyInterest);
         const previousBalance = balance;
@@ -85,7 +94,7 @@ function generateSimulation() {
     <div class="result-summary">
         <h2>Simulation Result</h2>
         <p><span class="label">Initial Loan:</span> <span class="value">Rp ${loanAmount.toLocaleString("en-US")}</span></p>
-        <p><span class="label">Daily Interest Rate:</span> <span class="value highlight">Rp ${parseCurrency((loanAmount * DAILY_INTEREST_RATE).toFixed(0)).toLocaleString("en-US")}</span></p>
+        <p><span class="label">Daily Interest Rate:</span> <span class="value highlight">Rp ${parseCurrency((loanAmount * dailyInterestRate).toFixed(0)).toLocaleString("en-US")} (${(dailyInterestRate * 100).toFixed(2)}%)</span></p>
         <p><span class="label">Total Interest Paid:</span> <span class="value highlight">Rp ${parseCurrency(totalInterest.toFixed(0)).toLocaleString("en-US")}</span></p>
         <p><span class="label">Start Date:</span> <span class="value">${formatDate(startDate)}</span></p>
         <p><span class="label">End Date:</span> <span class="value">${formatDate(endDate)}</span></p>
