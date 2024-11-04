@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Loan Simulation</h1>
+
+    <label for="loanAmount">Loan Amount (Rp):</label>
+    <input type="text" id="loanAmount" oninput="formatCurrency(this)" required value="Rp 1,000,000">
+
+    <label for="dailyPayment">Daily Payment (Rp):</label>
+    <input type="text" id="dailyPayment" oninput="formatCurrency(this)" required value="Rp 50,000">
+
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" required onclick="focusDatePicker()" style="cursor: pointer;">
+
+    <button onclick="generateSimulation()">Generate Simulation</button>
+
+    <div id="result"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #222;
+  color: #f0f0f0;
+}
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #333;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba( 0, 0, 0, 0.2);
+}
+h1 {
+  text-align: center;
+  color: #007bff;
+}
+label,
+input,
+button {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+}
+input {
+  padding: 8px;
+  border: 1px
+    solid
+    #555;
+  border-radius: 4px;
+  background-color: #444;
+  color: #fff;
+}
+button {
+  padding: 10px;
+  margin-top: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+button:hover {
+  background-color: #0056b3;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+.table-container {
+    max-height: 400px; /* Set the maximum height for the table */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #444; /* Optional: Add border around the scrollable area */
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px
+    solid
+    #444;
+  text-align: center;
+}
+th {
+  background-color: #007bff;
+  color: white;
+}
+tr.alternate-row {
+  background-color: #444;
+} /* Alternate row color */
+.result-summary {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #2b2b2b;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.result-summary h2 {
+    font-size: 1.5em;
+    color: #007BFF;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.result-summary p {
+    margin: 10px 0;
+    font-size: 1.1em;
+    line-height: 1.4em;
+    color: #f0f0f0;
+}
+
+.result-summary .label {
+    font-weight: bold;
+    color: #b0b0b0;
+}
+
+.result-summary .value {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.result-summary .highlight {
+    color: #FFDD57; /* Highlight color for important values */
+}
