@@ -1,4 +1,4 @@
-const DAILY_INTEREST_RATE = 2 / 7 / 100; // Fixed daily interest rate of (2/7)% of loan amount
+const DAILY_INTEREST_RATE = 0.5 / 100; // Fixed daily interest rate of (0.5)% of loan amount
 
 document.addEventListener("DOMContentLoaded", function () {
     // Set the default date to today
