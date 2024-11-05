@@ -57,13 +57,17 @@ table {
     margin-top: 10px;
 }
 
-th,
+th {
+  padding: 10px;
+  border: 1px solid #444;
+  text-align: center;
+}
+
 td {
   padding: 10px;
-  border: 1px
-    solid
-    #444;
-  text-align: center;
+  border: 1px solid #444;
+  text-align: right;
+  white-space: nowrap;
 }
 /* Freeze header */
 th {
@@ -72,6 +76,7 @@ th {
     background-color: #1e90ff;
     color: white;
     z-index: 1; /* Ensure header stays on top */
+    text-align: center;
 }
 tr.alternate-row {
   background-color: #444;

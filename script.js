@@ -61,9 +61,10 @@ function generateSimulation() {
     while (balance > 0) {
         const dayOfWeek = currentDate.getDay(); // 0 = Sunday, 6 = Saturday
         const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-        const dailyInterest = !isWeekend ? loanAmount * dailyInterestRate : 0;
+        const isFirstDay = days === 0;
+        const dailyInterest = isWeekend || isFirstDay ? 0 : balance * dailyInterestRate;
         
-        const payment = Math.min(dailyPayment, balance + dailyInterest);
+        const payment = isFirstDay ? 0 : Math.min(dailyPayment, balance + dailyInterest);
         const previousBalance = balance;
         balance = balance + dailyInterest - payment;
         totalInterest += dailyInterest;  // Accumulate total interest correctly
@@ -72,7 +73,7 @@ function generateSimulation() {
         const rowClass = (days % 2 === 0) ? 'alternate-row' : '';
         
         table += `<tr class="${rowClass}">
-            <td>${days + 1}</td>
+            <td>${days}</td>
             <td>${formatDate(currentDate)}</td>
             <td>Rp ${parseCurrency(previousBalance.toFixed(0)).toLocaleString("en-US")}</td>
             <td>Rp ${parseCurrency(dailyInterest.toFixed(0)).toLocaleString("en-US")}</td>
