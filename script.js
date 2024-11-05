@@ -62,7 +62,7 @@ function generateSimulation() {
         const dayOfWeek = currentDate.getDay(); // 0 = Sunday, 6 = Saturday
         const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
         const isFirstDay = days === 0;
-        const dailyInterest = isWeekend || isFirstDay ? 0 : balance * dailyInterestRate;
+        const dailyInterest = isWeekend || isFirstDay ? 0 : loanAmount * dailyInterestRate;
         
         const payment = isFirstDay ? 0 : Math.min(dailyPayment, balance + dailyInterest);
         const previousBalance = balance;
