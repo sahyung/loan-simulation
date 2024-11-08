@@ -42,6 +42,7 @@ function generateSimulation() {
     const loanAmount = parseCurrency(document.getElementById('loanAmount').value);
     const dailyPayment = parseCurrency(document.getElementById('dailyPayment').value);
     const dailyInterestRate = parseFloat(document.getElementById('dailyInterestRate').value) / 100; // Convert percentage to decimal
+    const dailyInterest = loanAmount * dailyInterestRate;
     const startDate = new Date(document.getElementById('startDate').value);
 
     let balance = loanAmount;
@@ -50,7 +51,7 @@ function generateSimulation() {
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = ""; // Clear previous results
 
-    if (isNaN(loanAmount) || isNaN(dailyPayment) || isNaN(dailyInterestRate) || !startDate) {
+    if (isNaN(loanAmount) || isNaN(dailyPayment) || isNaN(dailyInterestRate) || !startDate || dailyInterest > dailyPayment) {
         alert("Please enter valid input values.");
         return;
     }
